@@ -61,16 +61,16 @@ If using WSL with Redis installed
 ## 🔁 Example Usage
 ### Shorten a URL
 
-`curl -X POST http://localhost:8080/shorten \  
-  -H "Content-Type: application/json" \  
-  -d '{"url": "https://google.com"}'`
+`curl -X POST http://localhost:8080/shorten \`   
+  `-H "Content-Type: application/json" \`   
+  `-d '{"url": "https://google.com"}'`
 
 ### Response:
 
-`{
-  "message": "URL shortened successfully",
-  "shortUrl": "localhost:8080/abc12"
-}`
+`{`  
+  `"message": "URL shortened successfully",`  
+  `"shortUrl": "localhost:8080/abc12"`  
+`}`
 
 ### Visit the short URL
 
