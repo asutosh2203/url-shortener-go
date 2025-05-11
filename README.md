@@ -39,41 +39,56 @@ url-shortener-go/
 
 ### 1. Clone the repo
 
-```cmd git clone https://github.com/asutosh2203/url-shortener-go.git cd url-shortener-go```
+``` cmd
+git clone https://github.com/asutosh2203/url-shortener-go.git
+cd url-shortener-go
+```
 
 ### 2. Install dependencies
 
 Make sure Go is installed. Then:
 
-`go mod tidy`
+```cmd
+go mod tidy
+```
 
 ### 3. Start Redis (if using WSL or Docker)
 
 If using WSL with Redis installed
 
-`redis-server`
+```cmd
+redis-server
+```
 
 ### 4. Run the server
 
-`go run main.go`
+```cmd
+go run main.go
+```
 
 ## 🔁 Example Usage
 ### Shorten a URL
 
-`curl -X POST http://localhost:8080/shorten \`   
-  `-H "Content-Type: application/json" \`   
-  `-d '{"url": "https://google.com"}'`
+```cmd
+curl -X POST http://localhost:8080/shorten \ 
+  -H "Content-Type: application/json" \
+  -d '{"url": "https://google.com"}'
+```
 
 ### Response:
 
-`{`  
-  `"message": "URL shortened successfully",`  
-  `"shortUrl": "localhost:8080/abc12"`  
-`}`
+```json
+{
+  "message": "URL shortened successfully",
+  "shortUrl": "localhost:8080/abc12"
+}
+```
 
 ### Visit the short URL
 
-`curl -L http://localhost:8080/abc12`
+```cmd
+curl -L http://localhost:8080/abc12
+```
 
 Or open it in your browser — it redirects to the original long URL.
 
