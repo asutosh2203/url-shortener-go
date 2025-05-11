@@ -39,8 +39,7 @@ url-shortener-go/
 
 ### 1. Clone the repo
 
-`git clone https://github.com/asutosh2203/url-shortener-go.git`  
-`cd url-shortener-go`
+```cmd git clone https://github.com/asutosh2203/url-shortener-go.git cd url-shortener-go```
 
 ### 2. Install dependencies
 
