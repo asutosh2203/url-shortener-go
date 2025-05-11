@@ -23,13 +23,13 @@ A lightweight URL shortener service built with Go, Gin, and Redis. This project 
 
 ## 📦 Project Structure
 
-url-shortener-go/
-│
-├── main.go # Entry point
-├── handlers/
-│ ├── shorten.go # Logic for generating and returning shortened URLs
-│ └── redirect.go # Logic for handling redirection from short to long URL
-├── storage/
+url-shortener-go/  
+│  
+├── main.go # Entry point  
+├── handlers/  
+│ ├── shorten.go # Logic for generating and returning shortened URLs  
+│ └── redirect.go # Logic for handling redirection from short to long URL  
+├── storage/  
 │ └── redis.go # Redis setup and get/set helpers
 
 
@@ -39,7 +39,7 @@ url-shortener-go/
 
 ### 1. Clone the repo
 
-`git clone https://github.com/asutosh2203/url-shortener-go.git`
+`git clone https://github.com/asutosh2203/url-shortener-go.git`  
 `cd url-shortener-go`
 
 ### 2. Install dependencies
@@ -51,6 +51,7 @@ Make sure Go is installed. Then:
 ### 3. Start Redis (if using WSL or Docker)
 
 If using WSL with Redis installed
+
 `redis-server`
 
 ### 4. Run the server
@@ -60,8 +61,8 @@ If using WSL with Redis installed
 ## 🔁 Example Usage
 ### Shorten a URL
 
-`curl -X POST http://localhost:8080/shorten \
-  -H "Content-Type: application/json" \
+`curl -X POST http://localhost:8080/shorten \  
+  -H "Content-Type: application/json" \  
   -d '{"url": "https://google.com"}'`
 
 ### Response:
