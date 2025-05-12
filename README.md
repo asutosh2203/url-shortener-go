@@ -27,14 +27,14 @@ A lightweight URL shortener service built with Go, Gin, and Redis. This project 
 
 url-shortener-go/  
 │  
-├── main.go # Entry point  
+├── main.go              --> Entry point  
 ├── handlers/  
-│   ├── shorten.go # Logic for generating and returning shortened URLs  
-│   └── redirect.go # Logic for handling redirection from short to long URL  
+│   ├── shorten.go       --> Logic for generating and returning shortened URLs  
+│   └── redirect.go      --> Logic for handling redirection from short to long URL  
 ├── storage/  
-│   └── redis.go # Redis setup and get/set helpers
-└── middleware/
-    └── ratelimit.go      # IP-based rate limiter using Redis
+│   └── redis.go         --> Redis setup and get/set helpers  
+└── middleware/  
+    └── ratelimit.go     --> IP-based rate limiter using Redis  
 
 
 ---
