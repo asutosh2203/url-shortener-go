@@ -5,6 +5,7 @@ import (
 	"net/http"
 
 	"github.com/asutosh2203/url-shortener-go/handlers"
+	"github.com/asutosh2203/url-shortener-go/middleware"
 	"github.com/asutosh2203/url-shortener-go/storage"
 	"github.com/gin-gonic/gin"
 	// "time"
@@ -22,7 +23,7 @@ func main() {
 	})
 
 	// Endpoint to shorten URL
-	r.POST("/shorten", handlers.ShortenURL)
+	r.POST("/shorten", middleware.RateLimiter(), handlers.ShortenURL)
 
 	// Endpoint to redirect
 	r.GET("/:code", handlers.HandleRedirect)

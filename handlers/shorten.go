@@ -7,21 +7,22 @@ import (
 
 	"github.com/asutosh2203/url-shortener-go/storage"
 	"github.com/gin-gonic/gin"
+	// "github.com/redis/go-redis/v9"
 
 	"crypto/sha256"
 	"encoding/binary"
+	// "strconv"
 	"time"
 )
 
 // expected request body struct
 type RequestBody struct {
 	URL string `json:"url" binding:"required"`
-	TTL int `json:"ttl"` // in hours
+	TTL int    `json:"ttl"` // in hours
 }
 
 func ShortenURL(ctx *gin.Context) {
 
-	// fmt.Printf("Short code: %v", generateRandomString(5))
 	var req RequestBody
 
 	if err := ctx.BindJSON(&req); err != nil {

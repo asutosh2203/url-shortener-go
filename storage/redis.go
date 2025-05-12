@@ -29,3 +29,8 @@ func Set(key string, value string, expr time.Duration) error {
 func Get(key string) (string, error) {
 	return RedisClient.Get(Ctx, key).Result()
 }
+
+// GET the TTL of a key
+func GetTTL(key string) (time.Duration, error) {
+	return RedisClient.TTL(Ctx, key).Result()
+}

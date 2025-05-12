@@ -11,6 +11,7 @@ A lightweight URL shortener service built with Go, Gin, and Redis. This project 
 - 🔁 Supports redirection from short URLs to original URLs
 - ⏳ Allows URL expiration by specifying a TTL (Time To Live) in hours
 - 🧪 Easy to test using tools like `curl` or `httpie`
+- 🛡️ Basic IP-based rate limiting (max 5 requests per minute per IP)
 
 ---
 
@@ -28,10 +29,12 @@ url-shortener-go/
 │  
 ├── main.go # Entry point  
 ├── handlers/  
-│ ├── shorten.go # Logic for generating and returning shortened URLs  
-│ └── redirect.go # Logic for handling redirection from short to long URL  
+│   ├── shorten.go # Logic for generating and returning shortened URLs  
+│   └── redirect.go # Logic for handling redirection from short to long URL  
 ├── storage/  
-│ └── redis.go # Redis setup and get/set helpers
+│   └── redis.go # Redis setup and get/set helpers
+└── middleware/
+    └── ratelimit.go      # IP-based rate limiter using Redis
 
 
 ---
@@ -67,6 +70,8 @@ redis-server
 go run main.go
 ```
 
+---
+
 ## 🔁 Example Usage
 ### Shorten a URL
 
@@ -95,8 +100,16 @@ curl -L http://localhost:8080/abc12
 
 Or open it in your browser — it redirects to the original long URL.
 
+---
+
+### 🛡️ Rate Limiting
+
+To prevent abuse, this app uses a basic Redis-backed rate limiter. Each IP address can make up to 5 requests per minute. After that, you'll receive a `429 Too Many Requests` response.
+
+---
+
 ## 📌 Notes
 
     - Redis keys are now stored with an optional expiration time (TTL). If no TTL is provided, the shortened URL mapping persists indefinitely.
 
-    - The current version is focused on core functionality; advanced features like rate limiting and analytics will come later.
+    - This is a beginner-friendly implementation; advanced features like analytics and user authentication may be added later.
