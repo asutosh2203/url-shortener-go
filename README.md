@@ -33,9 +33,10 @@ url-shortener-go/
 │   └── redirect.go      --> Logic for handling redirection from short to long URL  
 ├── storage/  
 │   └── redis.go         --> Redis setup and get/set helpers  
-└── middleware/  
-    └── ratelimit.go     --> IP-based rate limiter using Redis  
-
+├── middleware/  
+│   └── rate_limiter.go  --> IP based rate limiter using Redis  
+├── utils/  
+│   └── utils.go         --> Utility helpers  
 
 ---
 

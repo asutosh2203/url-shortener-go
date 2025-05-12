@@ -6,12 +6,11 @@ import (
 	"net/http"
 
 	"github.com/asutosh2203/url-shortener-go/storage"
+	"github.com/asutosh2203/url-shortener-go/utils"
 	"github.com/gin-gonic/gin"
-	// "github.com/redis/go-redis/v9"
 
 	"crypto/sha256"
 	"encoding/binary"
-	// "strconv"
 	"time"
 )
 
@@ -25,11 +24,19 @@ func ShortenURL(ctx *gin.Context) {
 
 	var req RequestBody
 
+	// Bind the request body  with req JSON
 	if err := ctx.BindJSON(&req); err != nil {
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": "Invalid request"})
 		return
 	}
 
+	// Validate the input URL
+	if !utils.IsValidURL(req.URL) {
+		ctx.JSON(http.StatusBadRequest, gin.H{"error": "Invalid Input URL"})
+		return
+	}
+
+	// Generate the short code for the URL
 	shortUrlCode := generateRandomString(5, req.URL)
 
 	expr := time.Duration(0)
@@ -38,6 +45,7 @@ func ShortenURL(ctx *gin.Context) {
 		expr = time.Duration(req.TTL) * time.Hour
 	}
 
+	// Set the key value pair in Redis
 	if err := storage.Set(shortUrlCode, req.URL, expr); err != nil {
 		ctx.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to store URL"})
 		return
