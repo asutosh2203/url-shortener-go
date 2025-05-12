@@ -9,6 +9,7 @@ A lightweight URL shortener service built with Go, Gin, and Redis. This project 
 - 🔗 Shortens long URLs into 5-character codes
 - 💾 Persists URL mappings using Redis
 - 🔁 Supports redirection from short URLs to original URLs
+- ⏳ Allows URL expiration by specifying a TTL (Time To Live) in hours
 - 🧪 Easy to test using tools like `curl` or `httpie`
 
 ---
@@ -72,8 +73,10 @@ go run main.go
 ```cmd
 curl -X POST http://localhost:8080/shorten \ 
   -H "Content-Type: application/json" \
-  -d '{"url": "https://google.com"}'
+  -d '{"url": "https://google.com", "ttl": 24}'
 ```
+
+In this example, the shortened URL will expire after 24 hours. If no TTL is provided, the URL will remain valid indefinitely.
 
 ### Response:
 
@@ -94,6 +97,6 @@ Or open it in your browser — it redirects to the original long URL.
 
 ## 📌 Notes
 
-    - Redis keys are stored without expiration, ensuring persistent mapping unless manually deleted.
+    - Redis keys are now stored with an optional expiration time (TTL). If no TTL is provided, the shortened URL mapping persists indefinitely.
 
     - The current version is focused on core functionality; advanced features like rate limiting and analytics will come later.
